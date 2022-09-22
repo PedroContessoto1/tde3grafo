@@ -26,7 +26,6 @@ class GRAFO():
         else:
             print(f"Aresta entre {vertice1} -> {vertice2} não existe")
 
-
     def remove_vertice(self, vertice):
         if vertice not in self.grafo:
             print(f"Vertice {vertice} não existe")
@@ -70,27 +69,3 @@ class GRAFO():
             for i in value:
                 acc += 1
         return acc
-
-
-
-def main():
-    grafo1 = GRAFO()
-    grafo1.adiciona_vertice("A")
-    grafo1.adiciona_vertice("B")
-    grafo1.adiciona_vertice("B")
-    grafo1.adiciona_vertice("C")
-    grafo1.adiciona_aresta("A", "B", 10)
-    grafo1.adiciona_aresta("B", "C", 10)
-    grafo1.adiciona_aresta("C", "A", 10)
-    grafo1.adiciona_aresta("C", "B", 10)
-    grafo1.adiciona_aresta("C", "B", 10)
-    grafo1.imprime_lista_adjacencias()
-    grafo1.remove_aresta("Z", "B")
-    print(grafo1.peso("A", "B"))
-    print(grafo1.peso("A", "Z"))
-    print(grafo1.grau("C"))
-
-
-
-if __name__ == "__main__":
-    main()
