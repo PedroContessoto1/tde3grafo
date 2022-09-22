@@ -32,6 +32,7 @@ def condition_From_To(file):
 
 def main():
     grafo = gf.GRAFO()
+
     def insert():
         From, To = get_emails(file)
         grafo.adiciona_vertice(From)
