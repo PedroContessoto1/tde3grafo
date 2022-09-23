@@ -59,7 +59,8 @@ def main():
     print(grafo.verificador_euleriano())
     print(grafo.Dijkstra("drew.fossum@enron.com", "larry.hunter@enron.com"))
     print(grafo.grau_entrada_max())
-    print(grafo.grau_saida_max())
+    print(grafo.busca_profundidade("drew.fossum@enron.com", "larry.hunter@enron.com"))
+    print(grafo.busca_largura("drew.fossum@enron.com", "larry.hunter@enron.com"))
 
 
 if __name__ == '__main__':

@@ -15,7 +15,7 @@ class GRAFO:
         if self.tem_aresta(vertice1, vertice2):
             peso_ = self.peso(vertice1, vertice2)
             self.remove_aresta(vertice1, vertice2)
-            self.grafo[vertice1].append([vertice2, peso_+1])
+            self.grafo[vertice1].append([vertice2, peso_ + 1])
         else:
             self.grafo[vertice1].append([vertice2, peso])
 
@@ -110,7 +110,6 @@ class GRAFO:
             listaentradamax.append([numero_de_vertices, vertice])
         return listaentradamax.sort(reverse=True), print(listaentradamax[:20])
 
-
     def Dijkstra(self, start, end):
         dic_ = {key: math.inf for key in self.grafo if key != start}
         dic_[start] = 0
@@ -134,3 +133,29 @@ class GRAFO:
                 best_direcion.append(i[0])
                 end_word = i[0]
         return dic_[end], best_direcion[::-1]
+
+    def busca_profundidade(self, vertice, fim):
+        visitados = []
+        pilha = []
+        pilha.append(vertice)
+        while fim not in visitados:
+            s = pilha.pop()
+            if s not in visitados:
+                visitados.append(s)
+                for x in self.grafo[s][::-1]:
+                    if x not in visitados:
+                        pilha.append(x)
+        return visitados
+
+    def busca_largura(self, vertice, fim):
+        visitados = []
+        fila = []
+        fila.append(vertice)
+        while fim not in visitados:
+            if fila[0] not in visitados:
+                visitados.append(fila[0])
+                for x in self.grafo[fila[0]][::-1]:
+                    if x not in visitados:
+                        fila.append(x)
+            del fila[0]
+        return visitados
