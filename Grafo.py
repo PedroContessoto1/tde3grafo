@@ -1,4 +1,6 @@
 import math
+
+
 class GRAFO:
     def __init__(self):
         self.grafo = {}
@@ -55,8 +57,8 @@ class GRAFO:
 
     def verificador_euleriano(self):
         eulerian = True
-        for ver in self.grafo:
-            if not self.grau(ver) % 2:
+        for vertice in self.grafo.keys():
+            if not self.grau(vertice) % 2:
                 eulerian = False
         return eulerian
 
@@ -77,6 +79,37 @@ class GRAFO:
             for i in value:
                 acc += 1
         return acc
+
+    def grau_entrada(self, keys):
+        listaentrada = []
+        for vertice in self.grafo:
+            for adjacencias in self.grafo[vertice]:
+                if adjacencias[0] == keys:
+                    listaentrada.append(vertice)
+        return len(listaentrada)
+
+    def grau_saida(self, keys):
+        listaentrada = []
+        for vertice in self.grafo:
+            for adjacencias in self.grafo[vertice]:
+                if adjacencias[0] == keys:
+                    listaentrada.append(vertice)
+        return len(listaentrada)
+
+    def grau_entrada_max(self):
+        listaentradamax = []
+        for vertice in self.grafo:
+            numero_de_vertices = self.grau_entrada(vertice)
+            listaentradamax.append([numero_de_vertices, vertice])
+        return listaentradamax.sort(reverse=True), print(listaentradamax[:20])
+
+    def grau_saida_max(self):
+        listaentradamax = []
+        for vertice in self.grafo:
+            numero_de_vertices = self.grau_saida(vertice)
+            listaentradamax.append([numero_de_vertices, vertice])
+        return listaentradamax.sort(reverse=True), print(listaentradamax[:20])
+
 
     def Dijkstra(self, start, end):
         dic_ = {key: math.inf for key in self.grafo if key != start}
