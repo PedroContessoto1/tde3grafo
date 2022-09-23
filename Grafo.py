@@ -1,4 +1,5 @@
-class GRAFO():
+import math
+class GRAFO:
     def __init__(self):
         self.grafo = {}
 
@@ -52,6 +53,13 @@ class GRAFO():
             return len(self.grafo[vertice])
         return f"Vertice {vertice} não existe"
 
+    def verificador_euleriano(self):
+        eulerian = True
+        for ver in self.grafo:
+            if not self.grau(ver) % 2:
+                eulerian = False
+        return eulerian
+
     def imprime_lista_adjacencias(self):
         aresta = ""
         for key, value in self.grafo.items():
@@ -69,3 +77,27 @@ class GRAFO():
             for i in value:
                 acc += 1
         return acc
+
+    def Dijkstra(self, start, end):
+        dic_ = {key: math.inf for key in self.grafo if key != start}
+        dic_[start] = 0
+        visited = [start]
+        acc = 0
+        direcion = []
+        best_direcion = [end]
+        while end not in visited:
+            for key, value in self.grafo[visited[acc]]:
+                if key in visited:
+                    continue
+                new_distance = value + dic_[visited[acc]]
+                if dic_[key] > new_distance:
+                    direcion.append([visited[acc], key])
+                    dic_[key] = new_distance
+                visited.append(key)
+            acc += 1
+        end_word = end
+        for i in direcion[::-1]:
+            if end_word == i[1]:
+                best_direcion.append(i[0])
+                end_word = i[0]
+        return dic_[end], best_direcion[::-1]

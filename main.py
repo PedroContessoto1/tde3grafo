@@ -56,6 +56,8 @@ def main():
     grafo.imprime_lista_adjacencias()
     print(grafo.numero_vertices())
     print(grafo.numero_arrestas())
+    print(grafo.verificador_euleriano())
+    print(grafo.Dijkstra("drew.fossum@enron.com", "larry.hunter@enron.com"))
 
 
 if __name__ == '__main__':
